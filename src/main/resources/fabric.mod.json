@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "sunhack",
+  "version": "${version}",
+  "name": "SunHack",
+  "description": "pvp yk",
+  "authors": [
+    "2b2t_names"
+  ],
+  "contact": {
+    "repo": "https://github.com/2b2tnames1/SunHack.git"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/sunhack/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.names.sunhack.client.SunHackClient"
+    ],
+    "main": [
+      "me.names.sunhack.SunHack"
+    ]
+  },
+  "mixins": [
+    "sunhack.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
