@@ -1,45 +1,49 @@
 package me.names.sunhack.client.gui;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.lwjgl.input.Keyboard;
 
-public class SunHackGUI extends Screen {
+public class SunHackGUI {
 
-    public SunHackGUI() {
-        super(Text.of("SunHack GUI"));
+    private boolean isGuiOpen = false;
+
+    @SubscribeEvent
+    public void onRenderOverlay(RenderGameOverlayEvent.Post event) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+            if (isGuiOpen) {
+                renderGui();
+            }
+        }
     }
 
-    @Override
-    protected void init() {
-        super.init();
-        // Add initialization logic here if needed
+    private void renderGui() {
+        // Get Minecraft instance
+        Minecraft mc = Minecraft.getMinecraft();
+
+        // Get the font renderer
+        FontRenderer fontRenderer = mc.fontRendererObj;
+
+        // Get the screen resolution
+        ScaledResolution scaledResolution = new ScaledResolution(mc);
+
+        // Draw a simple GUI background
+        Gui.drawRect(50, 50, scaledResolution.getScaledWidth() - 50, scaledResolution.getScaledHeight() - 50, 0x80000000);
+
+        // Draw some text on the GUI
+        fontRenderer.drawString("SunHack GUI", (scaledResolution.getScaledWidth() / 2) - (fontRenderer.getStringWidth("SunHack GUI") / 2), 60, 0xFFFFFF);
     }
 
-    @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
-        drawStringWithShadow(matrices, textRenderer, client.getWindow().getScaledWidth() / 2 - textRenderer.getWidth(new TranslatableText("gui.title")), client.getWindow().getScaledHeight() / 2 - 4, Formatting.WHITE + "SunHack GUI");
-        super.render(matrices, mouseX, mouseY, delta);
-    }
-
-    @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        // Add mouse click logic here if needed
-        return super.mouseClicked(mouseX, mouseY, button);
-    }
-
-    @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        // Add key press logic here if needed
-        return super.keyPressed(keyCode, scanCode, modifiers);
-    }
-
-    @Override
-    public boolean isPauseScreen() {
-        return false;
+    @SubscribeEvent
+    public void onKeyInput(net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent event) {
+        // Check if the right shift key is pressed
+        if (Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
+            // Toggle GUI open/close
+            isGuiOpen = !isGuiOpen;
+        }
     }
 }
