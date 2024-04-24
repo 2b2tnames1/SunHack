@@ -11,12 +11,10 @@
     "repo": "https://github.com/2b2tnames1/SunHack.git"
   },
   "license": "All-Rights-Reserved",
-  "icon": "assets/sunhack/icon.png",
+
   "environment": "client",
   "entrypoints": {
-    "client": [
-      "me.names.sunhack.client.SunHackClient"
-    ],
+
     "main": [
       "me.names.sunhack.SunHack"
     ]
