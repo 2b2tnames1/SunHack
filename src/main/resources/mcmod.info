@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sunhack",
+  "name": "SunHack",
+  "description": "PVP",
+  "version": "1.0.0",
+  "mcversion": "1.20.4",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["2b2t_names"],
+  "credits":"",
+  "logoFile": "",
+  "screenshots": [icon.png],
+  "dependencies": []
+}
+]
