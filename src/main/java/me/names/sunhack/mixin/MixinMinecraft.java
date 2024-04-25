@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinMinecraft {
 
 
-@Inject(method = "tick", at = @At("HEAD"))
+    @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
-    System.out.println("Client Working");
-}
+        System.out.println("Client Working");
+    }
 }
