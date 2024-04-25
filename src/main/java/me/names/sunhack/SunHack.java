@@ -2,7 +2,8 @@ package me.names.sunhack;
 
 import net.fabricmc.api.ModInitializer;
 
-public class SunHack implements ModInitializer {
+public class
+SunHack implements ModInitializer {
 
     // Define mod metadata
     public static final String MOD_ID = "sunhack";
