@@ -17,19 +17,19 @@ import me.names.sunhack.client.module.modules.gui.ColorMain;
 
 import java.awt.*;
 
-public class GameSenseGUI extends MinecraftHUDGUI {
+public class SunHackGUI extends MinecraftHUDGUI {
 
     public static final int WIDTH = 100, HEIGHT = 12, DISTANCE = 10, HUD_BORDER = 2;
     private final Toggleable colorToggle;
     public final GUIInterface guiInterface;
     public final HUDClickGUI gui;
-    private final Theme theme, gameSenseTheme, clearTheme, clearGradientTheme;
+    private final Theme theme, sunhackTheme, clearTheme, clearGradientTheme;
 
-    public GameSenseGUI() {
+    public SunHackGUI() {
         ClickGuiModule clickGuiModule = ModuleManager.getModule(ClickGuiModule.class);
         ColorMain colorMain = ModuleManager.getModule(ColorMain.class);
         ColorScheme scheme = new SettingsColorScheme(clickGuiModule.enabledColor, clickGuiModule.backgroundColor, clickGuiModule.settingBackgroundColor, clickGuiModule.outlineColor, clickGuiModule.fontColor, clickGuiModule.opacity);
-        gameSenseTheme = new GameSenseTheme(scheme, HEIGHT, 2, 5);
+        sunhackTheme = new SunHackTheme(scheme, HEIGHT, 2, 5);
         clearTheme = new ClearTheme(scheme, false, HEIGHT, 1);
         clearGradientTheme = new ClearTheme(scheme, true, HEIGHT, 1);
         theme = new ThemeMultiplexer() {
@@ -37,7 +37,7 @@ public class GameSenseGUI extends MinecraftHUDGUI {
             protected Theme getTheme() {
                 if (clickGuiModule.theme.getValue().equals("2.0")) return clearTheme;
                 else if (clickGuiModule.theme.getValue().equals("2.1.2")) return clearGradientTheme;
-                else return gameSenseTheme;
+                else return sunhackTheme;
             }
         };
         colorToggle = new Toggleable() {
@@ -76,7 +76,7 @@ public class GameSenseGUI extends MinecraftHUDGUI {
 
             @Override
             public String getResourcePrefix() {
-                return "gamesense:gui/";
+                return "sunhack:gui/";
             }
         };
         gui = new HUDClickGUI(guiInterface, null) {
@@ -120,7 +120,7 @@ public class GameSenseGUI extends MinecraftHUDGUI {
                     if (clickGuiModule.scrolling.getValue().equals("Screen")) {
                         return childHeight;
                     }
-                    return Math.min(childHeight, Math.max(HEIGHT * 4, GameSenseGUI.this.height - getPosition(guiInterface).y - renderer.getHeight(open.getValue() != 0) - HEIGHT));
+                    return Math.min(childHeight, Math.max(HEIGHT * 4, SunHackGUI.this.height - getPosition(guiInterface).y - renderer.getHeight(open.getValue() != 0) - HEIGHT));
                 }
             };
             gui.addComponent(panel);
@@ -145,11 +145,11 @@ public class GameSenseGUI extends MinecraftHUDGUI {
             } else if (property instanceof ModeSetting) {
                 container.addComponent(new EnumComponent(property.getName(), null, theme.getComponentRenderer(), (ModeSetting) property));
             } else if (property instanceof ColorSetting) {
-                container.addComponent(new GameSenseColor(theme, (ColorSetting) property, colorToggle, new SettingsAnimation(clickGuiModule.animationSpeed)));
+                container.addComponent(new SunHackColor(theme, (ColorSetting) property, colorToggle, new SettingsAnimation(clickGuiModule.animationSpeed)));
             }
         }
-        container.addComponent(new GameSenseToggleMessage(theme.getComponentRenderer(), module));
-        container.addComponent(new GameSenseKeybind(theme.getComponentRenderer(), module));
+        container.addComponent(new SunHackToggleMessage(theme.getComponentRenderer(), module));
+        container.addComponent(new SunHackKeybind(theme.getComponentRenderer(), module));
     }
 
     public static void renderItem(ItemStack item, Point pos) {
