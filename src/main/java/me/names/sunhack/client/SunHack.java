@@ -13,11 +13,9 @@ import me.names.sunhack.client.clickgui.SunHackGUI;
 import me.names.sunhack.client.command.CommandManager;
 import me.names.sunhack.client.manager.ManagerLoader;
 import me.names.sunhack.client.module.ModuleManager;
-import net.fabricmc.fml.common.Mod;
-import net.fabricmc.fml.common.event.FMLInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.opengl.Display;
+
 
 import java.awt.*;
 

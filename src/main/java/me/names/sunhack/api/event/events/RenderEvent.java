@@ -6,13 +6,12 @@ public class RenderEvent extends SunHackEvent {
 
     private final float partialTicks;
 
-    public RenderEvent(float partialTicks;) {
+    public RenderEvent(float partialTicks) {
         super();
         this.partialTicks = partialTicks;
-
     }
 
     public float getPartialTicks() {
-        return partialTicks;
+        return this.partialTicks;
     }
 }
